@@ -34,6 +34,25 @@ namespace task_nine
             size = capacity;
         }
 
+        public int this[int index]
+        {
+            get
+            {
+                int[] item = this.ToArray();
+                return item[index];
+            }
+            set
+            {
+                int[] item = this.ToArray();
+                item[index] = value;
+                this.Clear();
+                foreach (int t in item)
+                {
+                    this.Add(t);
+                }
+            }
+        }
+
         public void Add(int item)
         {
             Node node = new Node(item);
@@ -90,6 +109,44 @@ namespace task_nine
                 current = current.next;
             }
         }
+
+        public int Search(int number)
+        {
+            var current = head;
+            int i = 0;
+            while (current != null)
+            {
+                if (current.Value == number) break;
+                current = current.next;
+                i++;
+            }
+            if (current == null) return -1;
+            else return i;
+        }
+
+        public int[] ToArray()
+        {
+            Node current = head;
+            int[] array = new int[this.Count];
+            int i = 0;
+            while (current != null)
+            {
+                array[i] = current.Value;
+                i++;
+                current = current.next;
+            }
+            return array;
+        }
+
+        //public int IndexOf()
+        //{
+        //    int i = 0;
+        //    Node current = head;
+        //    while (current != null)
+        //    {
+        //        if (current.Value )
+        //    }
+        //}
 
         public int Count
         {
